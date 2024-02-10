@@ -82,7 +82,6 @@ public class Main {
 		String jabatan;
 		double gaji = 0;
 		String idKaryawan = GenerateID();
-//		boolean key = false;
 		
 		System.out.print("Input nama karyawan [>= 3]: ");
 		nama = scan.nextLine();
@@ -107,15 +106,6 @@ public class Main {
 		}
 		else return;
 		
-//		if((jumlahManager - 1) % 3 == 0 && jumlahManager - 1 != 0 && key == false) {
-//			key = true;
-//		}
-//		else if((jumlahSupervisor - 1) % 3 == 0 && jumlahSupervisor - 1 != 0 && key == false) {
-//			key = true;
-//		}
-//		else if((jumlahAdmin - 1) % 3 == 0 && jumlahAdmin -1 != 0 && key == false) {
-//			key = true;
-//		}
 		System.out.println("Berhasil menambahkan karyawan dengan id " + idKaryawan);
 		Karyawan karyawan = new Karyawan(nama, jenisKelamin, jabatan, idKaryawan, gaji);
 		dataKaryawan.add(karyawan);
