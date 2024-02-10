@@ -44,9 +44,9 @@ public class Main {
 				case 4:
 					DeleteData();
 					Return();
-					
 					break;
 				case 5:
+					System.out.print("\033[H\033[2J");
 					System.out.println("Terima kasih telah menggunakan program ini");
 					System.exit(0);
 					break;
@@ -82,6 +82,7 @@ public class Main {
 		String jabatan;
 		double gaji = 0;
 		String idKaryawan = GenerateID();
+//		boolean key = false;
 		
 		System.out.print("Input nama karyawan [>= 3]: ");
 		nama = scan.nextLine();
@@ -106,11 +107,20 @@ public class Main {
 		}
 		else return;
 		
+//		if((jumlahManager - 1) % 3 == 0 && jumlahManager - 1 != 0 && key == false) {
+//			key = true;
+//		}
+//		else if((jumlahSupervisor - 1) % 3 == 0 && jumlahSupervisor - 1 != 0 && key == false) {
+//			key = true;
+//		}
+//		else if((jumlahAdmin - 1) % 3 == 0 && jumlahAdmin -1 != 0 && key == false) {
+//			key = true;
+//		}
 		System.out.println("Berhasil menambahkan karyawan dengan id " + idKaryawan);
 		Karyawan karyawan = new Karyawan(nama, jenisKelamin, jabatan, idKaryawan, gaji);
 		dataKaryawan.add(karyawan);
 		
-		if((jumlahManager - 1) % 3 == 0 && jumlahManager - 1 != 0) {
+		if((jumlahManager - 1) % 3 == 0 && jumlahManager - 1 != 0 && jabatan.equals("Manager")) {
 			int counter = 1;
 			System.out.print("Bonus sebesar 10% telah ditambahkan kepada karyawan dengan id");
 			for(Karyawan k: dataKaryawan) {
@@ -124,7 +134,7 @@ public class Main {
 			}
 			System.out.println("");
 		}
-		else if((jumlahSupervisor - 1) % 3 == 0 && jumlahSupervisor - 1 != 0) {
+		else if((jumlahSupervisor - 1) % 3 == 0 && jumlahSupervisor - 1 != 0 && jabatan.equals("Supervisor")) {
 			int counter = 1;
 			System.out.print("Bonus sebesar 7.5% telah ditambahkan kepada karyawan dengan id");
 			for(Karyawan k: dataKaryawan) {
@@ -138,7 +148,7 @@ public class Main {
 			}
 			System.out.println("\n");
 		}
-		else if((jumlahAdmin - 1) % 3 == 0 && jumlahAdmin -1 != 0) {
+		else if((jumlahAdmin - 1) % 3 == 0 && jumlahAdmin -1 != 0 && jabatan.equals("Admin")) {
 			int counter = 1;
 			System.out.print("Bonus sebesar 5% telah ditambahkan kepada karyawan dengan id");
 			for(Karyawan k: dataKaryawan) {
@@ -249,6 +259,49 @@ public class Main {
 			gaji = GAJI_SUPERVISOR;
 		}
 		else return;
+		
+		if((jumlahManager - 1) % 3 == 0 && jumlahManager - 1 != 0 && jabatan.equals("Manager")) {
+			int counter = 1;
+			System.out.print("Bonus sebesar 10% telah ditambahkan kepada karyawan dengan id");
+			for(Karyawan k1: dataKaryawan) {
+				if(counter > (jumlahManager - 1)) break;
+				if(k1.getJabatan().equals("Manager")) {
+					k1.setGaji(k1.getGaji() * 1.10);
+					if(counter == 1) System.out.print(" " + k1.getIdKaryawan());
+					else if(counter > 1) System.out.print(", " + k1.getIdKaryawan());
+					counter += 1;
+				}
+			}
+			System.out.println("");
+		}
+		else if((jumlahSupervisor - 1) % 3 == 0 && jumlahSupervisor - 1 != 0 && jabatan.equals("Supervisor")) {
+			int counter = 1;
+			System.out.print("Bonus sebesar 7.5% telah ditambahkan kepada karyawan dengan id");
+			for(Karyawan k1: dataKaryawan) {
+				if(counter > (jumlahSupervisor - 1)) break;
+				if(k1.getJabatan().equals("Supervisor")) {
+					k1.setGaji(k1.getGaji() * 1.075);
+					if(counter == 1) System.out.print(" " + k1.getIdKaryawan());
+					else if(counter > 1) System.out.print(", " + k1.getIdKaryawan());
+					counter += 1;
+				}
+			}
+			System.out.println("\n");
+		}
+		else if((jumlahAdmin - 1) % 3 == 0 && jumlahAdmin - 1 != 0 && jabatan.equals("Admin")) {
+			int counter = 1;
+			System.out.print("Bonus sebesar 5% telah ditambahkan kepada karyawan dengan id");
+			for(Karyawan k1: dataKaryawan) {
+				if(counter > (jumlahAdmin - 1)) break;
+				if(k1.getJabatan().equals("Admin")) {
+					k1.setGaji(k1.getGaji() * 1.05);
+					if(counter == 1) System.out.print(" " + k1.getIdKaryawan());
+					else if(counter > 1) System.out.print(", " + k1.getIdKaryawan());
+					counter += 1;
+				}
+			}
+			System.out.println("");
+		}
 		
 		System.out.println("Berhasil mengupdate karyawan dengan id " + idKaryawan);
 			
